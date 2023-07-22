@@ -4,7 +4,6 @@ import UseColleges from '../../hooks/UseColleges';
 const FeaturedColleges = () => {
 
     const { colleges } = UseColleges()
-    console.log(colleges);
 
     return (
         <div className='pt-14 my-container'>

@@ -1,4 +1,4 @@
-import { Outlet } from 'react-router-dom'
+import { Outlet, ScrollRestoration } from 'react-router-dom'
 import Navbar from './shared/Navbar'
 
 function App() {
@@ -7,6 +7,7 @@ function App() {
     <div>
       <Navbar></Navbar>
       <Outlet></Outlet>
+      <ScrollRestoration></ScrollRestoration>
     </div>
   )
 }
