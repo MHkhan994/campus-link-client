@@ -8,7 +8,7 @@ const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false)
 
     return (
-        <div className="bg-gray-200">
+        <div className="bg-white fixed top-0 left-0 z-40 w-full">
             <div className="my-container hidden lg:flex justify-between items-center py-4">
                 <h1 className="text-3xl font-bold italic">CampusLink</h1>
                 <ul className="flex gap-5 text-lg">

@@ -2,7 +2,7 @@ import banner from '../../assets/banner.jpg'
 
 const Banner = () => {
     return (
-        <div className='relative'>
+        <div className='relative mt-10'>
             <img className='lg:h-[80vh] h-[50vh] w-full object-cover' src={banner} alt="" />
             <div className='absolute w-full lg:h-[80vh] h-[50vh] bg-[#00000049] z-20 top-0 left-0'>
                 <div className='my-container flex justify-center h-full items-center'>

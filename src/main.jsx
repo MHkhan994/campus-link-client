@@ -10,6 +10,14 @@ import {
 import Colleges from './pages/Colleges/Colleges.jsx';
 import Home from './pages/Home/Home.jsx';
 
+import {
+  QueryClient,
+  QueryClientProvider,
+} from '@tanstack/react-query'
+import College from './pages/Colleges/College.jsx';
+
+const queryClient = new QueryClient()
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -22,13 +30,19 @@ const router = createBrowserRouter([
       {
         path: 'colleges',
         element: <Colleges></Colleges>
+      },
+      {
+        path: 'college/:id',
+        element: <College></College>
       }
     ]
   },
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <RouterProvider router={router} />
-  </React.StrictMode>,
+  <QueryClientProvider client={queryClient}>
+    <React.StrictMode>
+      <RouterProvider router={router} />
+    </React.StrictMode>
+  </QueryClientProvider>,
 )
