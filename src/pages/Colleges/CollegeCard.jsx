@@ -5,7 +5,7 @@ const CollegeCard = ({ college }) => {
     const { image, name, admissionDate, researchWorks, sports, _id } = college
 
     return (
-        <div className="border rounded-md">
+        <div className="border rounded-md p-1">
             <img className="rounded-md object-cover" src={image} alt="" />
             <div className="p-3 space-y-2">
                 <h1 className="font-semibold text-xl">{name}</h1>

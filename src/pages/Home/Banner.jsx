@@ -35,7 +35,7 @@ const Banner = () => {
                     <button className='text-white bg-green-800 px-4 h-12 lg:text-2xl text-xl'>Search</button>
                 </form>
                 <dialog id="my_modal_4" className="modal">
-                    <form method="dialog" className="modal-box w-11/12 max-w-5xl">
+                    <form method="dialog" className="modal-box w-11/12 max-w-5xl bg-gray-100">
                         <button onClick={hanldeCloseModal}>
                             <HiXMark className='text-4xl'></HiXMark>
                         </button>
@@ -53,7 +53,7 @@ const Banner = () => {
                         }
                         <div className="modal-action">
                             {/* if there is a button, it will close the modal */}
-                            <button onClick={hanldeCloseModal} className="btn">Close</button>
+                            <button onClick={hanldeCloseModal} className="btn bg-gray-500 text-white">Close</button>
                         </div>
                     </form>
                 </dialog>
