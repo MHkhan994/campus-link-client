@@ -6,6 +6,7 @@ import { FaFacebook, FaGoogle } from "react-icons/fa";
 
 import registerImg from '../../assets/register.jpg'
 import { updateProfile } from "firebase/auth";
+import axios from "axios";
 
 const Register = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
@@ -33,9 +34,12 @@ const Register = () => {
                     createUser(email, password)
                         .then(result => {
                             updateProfile(result.user, { displayName: name, photoURL: image })
-                            if (result.user) {
-                                navigate('/')
-                            }
+                            axios.post('http://localhost:5000/user', { name, image, email, phone: '', address: '', university: '' })
+                                .then(ress => {
+                                    if (ress.data.insertedId) {
+                                        navigate('/')
+                                    }
+                                })
                         })
                 }
             })
@@ -46,7 +50,14 @@ const Register = () => {
         googleLogin()
             .then(result => {
                 if (result.user) {
-                    navigate('/')
+                    const user = result.user
+                    axios.post('http://localhost:5000/user', { name: user.displayName, image: user.photoURL, email: user.email, phone: '', address: '', university: '' })
+                        .then(res => {
+                            console.log(res.data);
+                            if (res.data.insertedId || res.data.alreadyUser === true) {
+                                navigate('/')
+                            }
+                        })
                 }
             })
     }

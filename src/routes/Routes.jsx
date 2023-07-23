@@ -45,7 +45,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: 'myCollege',
-                element: <MyCollege></MyCollege>
+                element: <PrivateRoute><MyCollege></MyCollege></PrivateRoute>
             }
         ]
     },
