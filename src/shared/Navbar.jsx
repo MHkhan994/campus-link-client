@@ -1,21 +1,38 @@
 import { NavLink } from "react-router-dom";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { FaBars } from "react-icons/fa";
 import { HiXMark } from "react-icons/hi2";
+import { AuthContext } from "../Providers/AuthProvider";
 
 const Navbar = () => {
 
     const [isOpen, setIsOpen] = useState(false)
+    const { user, logOut } = useContext(AuthContext)
+
+    const handleLogout = () => {
+        logOut()
+    }
 
     return (
         <div className="bg-white fixed top-0 left-0 z-40 w-full">
             <div className="my-container hidden lg:flex justify-between items-center py-4">
                 <h1 className="text-3xl font-bold italic">CampusLink</h1>
-                <ul className="flex gap-5 text-lg">
+                <ul className="flex gap-5 text-lg items-center">
                     <NavLink className={({ isActive }) => isActive ? 'text-green-500' : ''} to="/">Home</NavLink>
                     <NavLink className={({ isActive }) => isActive ? 'text-green-500' : ''} to="/colleges">Colleges</NavLink>
                     <NavLink className={({ isActive }) => isActive ? 'text-green-500' : ''} to="/admission">Admission</NavLink>
                     <NavLink className={({ isActive }) => isActive ? 'text-green-500' : ''} to="/myCollege">My college</NavLink>
+                    {
+                        user ?
+                            <img className="h-10 rounded-full" src={user.photoURL} alt="" />
+                            :
+                            <NavLink className={({ isActive }) => isActive ? 'text-green-500' : ''} to="/login">Login</NavLink>
+                    }
+                    {
+                        user && <button onClick={handleLogout}>
+                            Logout
+                        </button>
+                    }
                 </ul>
             </div>
 

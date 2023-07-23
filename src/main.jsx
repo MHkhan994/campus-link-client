@@ -15,6 +15,8 @@ import {
   QueryClientProvider,
 } from '@tanstack/react-query'
 import College from './pages/Colleges/College.jsx';
+import Login from './pages/Login/Login.jsx';
+import AuthProvider from './Providers/AuthProvider.jsx';
 
 const queryClient = new QueryClient()
 
@@ -34,15 +36,21 @@ const router = createBrowserRouter([
       {
         path: 'college/:id',
         element: <College></College>
+      },
+      {
+        path: 'login',
+        element: <Login></Login>
       }
     ]
   },
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <QueryClientProvider client={queryClient}>
-    <React.StrictMode>
-      <RouterProvider router={router} />
-    </React.StrictMode>
-  </QueryClientProvider>,
+  <AuthProvider>
+    <QueryClientProvider client={queryClient}>
+      <React.StrictMode>
+        <RouterProvider router={router} />
+      </React.StrictMode>
+    </QueryClientProvider>
+  </AuthProvider>,
 )
