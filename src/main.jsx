@@ -32,25 +32,25 @@ const router = createBrowserRouter([
         element: <Home></Home>
       },
       {
-        path: 'colleges',
+        path: '/colleges',
         element: <Colleges></Colleges>
       },
       {
-        path: 'college/:id',
+        path: '/college/:id',
         element: <College></College>
       },
       {
-        path: 'login',
+        path: '/login',
         element: <Login></Login>
       },
       {
-        path: 'register',
+        path: '/register',
         element: <Register></Register>
       },
       {
-        path: 'admission',
+        path: '/admission',
         element: <Admission></Admission>
-      }
+      },
     ]
   },
 ]);
