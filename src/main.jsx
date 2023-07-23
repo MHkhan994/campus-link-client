@@ -18,6 +18,7 @@ import College from './pages/Colleges/College.jsx';
 import Login from './pages/Login/Login.jsx';
 import AuthProvider from './Providers/AuthProvider.jsx';
 import Register from './pages/Register/Register.jsx';
+import Admission from './pages/Admission/Admission.jsx';
 
 const queryClient = new QueryClient()
 
@@ -45,6 +46,10 @@ const router = createBrowserRouter([
       {
         path: 'register',
         element: <Register></Register>
+      },
+      {
+        path: 'admission',
+        element: <Admission></Admission>
       }
     ]
   },
