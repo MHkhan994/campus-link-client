@@ -1,10 +1,14 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../Providers/AuthProvider";
+import Swal from "sweetalert2";
 
 const Admission = () => {
 
     const navigate = useNavigate()
+    const { user } = useContext(AuthContext)
 
     const { data: colleges = [] } = useQuery({
         queryKey: ['colleges'],
@@ -13,6 +17,22 @@ const Admission = () => {
             return res.data
         }
     })
+
+    const handleApply = (id, name) => {
+        axios.patch('http://localhost:5000/appliedOrNot', { id, user: user.email })
+            .then(res => {
+                console.log(res.data);
+                if (res.data.applied === true) {
+                    Swal.fire({
+                        icon: 'error',
+                        text: `already applied to ${name}`,
+                    })
+                }
+                else {
+                    navigate(`/apply/${id}`)
+                }
+            })
+    }
 
 
     return (
@@ -27,7 +47,7 @@ const Admission = () => {
                             <button className="my-btn">
                                 <Link to={`/college/${c._id}`}>Details</Link>
                             </button>
-                            <button onClick={() => navigate(`/admissionInfo/${c._id}`)} className="my-btn">Apply</button>
+                            <button onClick={() => handleApply(c._id, c.name)} className="my-btn">Apply</button>
                         </div>
                     </div>)
                 }

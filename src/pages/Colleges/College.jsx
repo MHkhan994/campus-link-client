@@ -23,9 +23,9 @@ const College = () => {
         }
     })
 
-    const { name, image, admissionDate, events, overview, reviews, admissionProcess, facilities, sports, contactInfo } = college
+    const { name, image, subjects, admissionDate, events, overview, reviews, admissionProcess, facilities, sports, contactInfo } = college
 
-    console.log(reviews);
+    console.log(college);
 
     return (
         <div className='my-container py-20'>
@@ -50,6 +50,12 @@ const College = () => {
                 <h1 className='text-gray-700 text-lg'><span className='text-xl font-semibold'>Overview: </span> {overview}</h1>
                 <h1 className='text-gray-700 text-lg'><span className='text-xl font-semibold'>Facilities: </span> {facilities}</h1>
                 <h1 className='text-gray-700 text-lg'><span className='text-xl font-semibold'>Admission Process: </span> {admissionProcess}</h1>
+                <div>
+                    <span className='text-xl font-semibold'>Subjects: </span>
+                    {
+                        subjects?.map(s => <li key={s}>{s}</li>)
+                    }
+                </div>
                 <div>
                     <span className='text-xl font-semibold'>Sports Cetegory: </span>
                     {
