@@ -40,22 +40,37 @@ const ApplyPage = () => {
         const address = data.address
         const birthday = data.birthday;
         const subject = data.subject
+        const photo = data.photo
+        const date = new Date()
 
-        console.log(name, email, phone, address, birthday, subject);
-        axios.post('http://localhost:5000/application', { collegeId: _id, studentName, college: name, email, phone, address, birthday, subject, })
-            .then(res => {
-                console.log(res.data);
-                if (res.data.insertedId) {
-                    Swal.fire({
-                        position: 'center',
-                        icon: 'success',
-                        title: 'Application Complete',
-                        showConfirmButton: false,
-                        timer: 1500
-                    })
-                    navigate('/admission')
+        const formData = new FormData()
+        formData.append('image', photo[0])
+
+        fetch(`https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_photoApi}`, {
+            method: 'POST',
+            body: formData
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.success == true) {
+                    const image = data.data.display_url
+                    axios.post('http://localhost:5000/application', { collegeId: _id, studentName, college: name, email, phone, address, birthday, subject, date, image })
+                        .then(result => {
+                            if (result.data.insertedId) {
+                                Swal.fire({
+                                    position: 'center',
+                                    icon: 'success',
+                                    title: 'Application Complete',
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                })
+                                navigate('/myCollege')
+                            }
+                        })
                 }
             })
+
+
     }
 
     return (
@@ -108,6 +123,13 @@ const ApplyPage = () => {
                             }
                         </select>
                         {errors.subject && <span className="text-red-600 pt-2">please select a subject</span>}
+                    </div>
+                    <div className="form-control">
+                        <label className="label">
+                            <span className="label-text">Photo</span>
+                        </label>
+                        <input {...register("photo", { required: true })} type="file" placeholder="Your photo" className="input h-10" />
+                        {errors.photo && <span className="text-red-600 pt-2">please add your formal photo</span>}
                     </div>
                     <div className="flex justify-center py-3">
                         <button className="my-btn w-full">Submit</button>

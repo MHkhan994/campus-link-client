@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { FaFacebook, FaGoogle } from "react-icons/fa";
 
 import registerImg from '../../assets/register.jpg'
+import { updateProfile } from "firebase/auth";
 
 const Register = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
@@ -14,6 +15,7 @@ const Register = () => {
     const onSubmit = data => {
         const photo = data.photo
         const email = data.email
+        const name = data.name
         const password = data.password
         console.log(email, password);
 
@@ -30,7 +32,7 @@ const Register = () => {
                     const image = data.data.display_url
                     createUser(email, password)
                         .then(result => {
-                            console.log(result);
+                            updateProfile(result.user, { displayName: name, photoURL: image })
                             if (result.user) {
                                 navigate('/')
                             }

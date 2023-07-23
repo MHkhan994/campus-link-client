@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { FaFacebook, FaGoogle } from 'react-icons/fa';
 import { AuthContext } from "../../Providers/AuthProvider";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 import loginImg from '../../assets/login.jpg'
 
@@ -11,6 +11,8 @@ const Login = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const { googleLogin, login, facebookLogin } = useContext(AuthContext)
     const navigate = useNavigate()
+    const location = useLocation()
+    const from = location.state?.from || '/'
 
     const [emailError, setemailError] = useState('')
     const [passError, setPassError] = useState('')
@@ -22,7 +24,7 @@ const Login = () => {
         login(email, password)
             .then(result => {
                 if (result.user) {
-                    navigate('/')
+                    navigate(from)
                 }
             })
             .catch(error => {
@@ -40,7 +42,7 @@ const Login = () => {
         googleLogin()
             .then(result => {
                 if (result.user) {
-                    navigate('/')
+                    navigate(from)
                 }
             })
     }

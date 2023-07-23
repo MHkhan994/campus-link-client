@@ -8,6 +8,7 @@ import Login from '../pages/Login/Login.jsx';
 import Home from '../pages/Home/Home.jsx';
 import Colleges from '../pages/Colleges/Colleges.jsx';
 import App from '../App'
+import MyCollege from "../pages/MyCollege/MyCollege";
 
 export const router = createBrowserRouter([
     {
@@ -41,6 +42,10 @@ export const router = createBrowserRouter([
             {
                 path: 'apply/:id',
                 element: <PrivateRoute><ApplyPage></ApplyPage></PrivateRoute>
+            },
+            {
+                path: 'myCollege',
+                element: <MyCollege></MyCollege>
             }
         ]
     },
