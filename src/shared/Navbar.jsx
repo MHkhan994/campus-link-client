@@ -17,7 +17,10 @@ const Navbar = () => {
     return (
         <div className="bg-white fixed top-0 left-0 z-40 w-full">
             <div className="my-container hidden lg:flex justify-between items-center py-4">
-                <h1 className="text-3xl font-bold italic">CampusLink</h1>
+                <div className="flex gap-2 items-center">
+                    <img className="w-11" src="./logo.png" alt="" />
+                    <h1 className="text-3xl font-bold italic">CampusLink</h1>
+                </div>
                 <ul className="flex gap-5 text-lg items-center">
                     <NavLink className={({ isActive }) => isActive ? 'text-green-500' : ''} to="/">Home</NavLink>
                     <NavLink className={({ isActive }) => isActive ? 'text-green-500' : ''} to="/colleges">Colleges</NavLink>
@@ -30,7 +33,7 @@ const Navbar = () => {
                     }
                     {
                         user ?
-                            <img className="h-10 rounded-full" src={user.photoURL} alt="" />
+                            <img className="h-10 w-10 object-cover rounded-full" src={user.photoURL} alt="" />
                             :
                             <NavLink className={({ isActive }) => isActive ? 'text-green-500' : ''} to="/login">Login</NavLink>
                     }
@@ -42,7 +45,10 @@ const Navbar = () => {
 
             {/* phone */}
             <div className="lg:hidden flex justify-between items-center py-2 my-container">
-                <h1 className="text-2xl font-bold italic">CampusLink</h1>
+                <div className="flex gap-2 items-center">
+                    <img className="w-10" src="./logo.png" alt="" />
+                    <h1 className="text-2xl font-bold italic">CampusLink</h1>
+                </div>
                 <FaBars onClick={() => setIsOpen(true)} className="text-xl"></FaBars>
                 {
                     isOpen && <div className="absolute top-0 left-0 w-full bg-white z-30">
@@ -61,7 +67,7 @@ const Navbar = () => {
                             }
                             {
                                 user ?
-                                    <img className="h-10 rounded-full" src={user.photoURL} alt="" />
+                                    <img className="h-10 w-10 object-cover rounded-full" src={user.photoURL} alt="" />
                                     :
                                     <NavLink onClick={() => setIsOpen(false)} className={({ isActive }) => isActive ? 'text-green-500' : ''} to="/login">Login</NavLink>
                             }

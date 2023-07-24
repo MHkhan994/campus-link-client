@@ -9,7 +9,7 @@ import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 
 // import required modules
-import { Autoplay, FreeMode, Grid, Navigation, Pagination } from 'swiper/modules';
+import { Autoplay, FreeMode, Navigation, Pagination } from 'swiper/modules';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 const Gallery = () => {

@@ -28,7 +28,7 @@ const College = () => {
     console.log(college);
 
     return (
-        <div className='my-container py-20'>
+        <div className='my-container pt-20'>
             <h1 className='text-3xl text-center py-4 text-green-700'>{name}</h1>
             <img className='mx-auto' src={image} alt="" />
             <div className='w-4/5 pt-5 mx-auto text-lg text-green-600'>
@@ -73,7 +73,7 @@ const College = () => {
                     modules={[Navigation, Autoplay]}
                 >
                     {
-                        reviews?.map(r => <SwiperSlide className='text-center space-y-1 rounded-lg mx-auto bg-green-300 py-3' key={r.reviewDate}>
+                        reviews?.map(r => <SwiperSlide className='text-center space-y-1 px-3 rounded-lg mx-auto bg-green-300 py-3' key={r.reviewDate}>
                             <h2 className='text-xl font-semibold'>{r.userName}</h2>
                             <Rating
                                 style={{ maxWidth: 150 }}
@@ -91,7 +91,7 @@ const College = () => {
                     }
                 </Swiper>
             </div>
-            <div className='py-4'>
+            <div className='pt-4'>
                 <h1 className='font-bold text-xl'>Contact Info:</h1>
                 <p>{contactInfo?.address}</p>
                 <p>{contactInfo?.email}</p>

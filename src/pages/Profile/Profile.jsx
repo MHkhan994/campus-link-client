@@ -30,7 +30,7 @@ const Profile = () => {
                             <Link to={'/updateProfile'}>Update</Link>
                         </button>
                         <div className="flex flex-col items-center gap-3">
-                            <img className="rounded-full h-48" src={dbUser?.image} alt="" />
+                            <img className="rounded-full h-48 w-48 object-cover" src={dbUser?.image} alt="" />
                             <h1 className="text-2xl font-semibold">{dbUser?.name}</h1>
                             <div className="space-y-2 text-xl">
                                 <p>Email: {dbUser?.email}</p>
