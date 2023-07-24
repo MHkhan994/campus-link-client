@@ -5,6 +5,7 @@ import { AuthContext } from "../../Providers/AuthProvider";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
 import loginImg from '../../assets/login.jpg'
+import axios from "axios";
 
 const Login = () => {
 
@@ -42,7 +43,14 @@ const Login = () => {
         googleLogin()
             .then(result => {
                 if (result.user) {
-                    navigate(from)
+                    const user = result.user
+                    axios.post('http://localhost:5000/user', { name: user.displayName, image: user.photoURL, email: user.email, phone: '', address: '', university: '' })
+                        .then(res => {
+                            console.log(res.data);
+                            if (res.data.insertedId || res.data.alreadyUser === true) {
+                                navigate('/')
+                            }
+                        })
                 }
             })
     }
@@ -58,7 +66,7 @@ const Login = () => {
     return (
         <div className="my-container mt-20">
             <h1 className="text-3xl font-semibold text-center pb-10 text-green-600">Login</h1>
-            <div className="grid lg:grid-cols-2 gap-10 items-center">
+            <div className="grid lg:grid-cols-2 md:grid-cols-2 gap-10 items-center">
                 <div>
                     <img src={loginImg} alt="" />
                 </div>

@@ -9,6 +9,8 @@ import Home from '../pages/Home/Home.jsx';
 import Colleges from '../pages/Colleges/Colleges.jsx';
 import App from '../App'
 import MyCollege from "../pages/MyCollege/MyCollege";
+import Profile from "../pages/Profile/Profile";
+import UpdateProfile from "../pages/Profile/UpdateProfile";
 
 export const router = createBrowserRouter([
     {
@@ -46,6 +48,14 @@ export const router = createBrowserRouter([
             {
                 path: 'myCollege',
                 element: <PrivateRoute><MyCollege></MyCollege></PrivateRoute>
+            },
+            {
+                path: 'profile',
+                element: <PrivateRoute><Profile></Profile></PrivateRoute>
+            },
+            {
+                path: 'updateProfile',
+                element: <UpdateProfile></UpdateProfile>
             }
         ]
     },

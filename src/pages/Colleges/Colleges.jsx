@@ -15,10 +15,11 @@ const Colleges = () => {
 
     return (
         <div className='my-container pt-20'>
+            <h1 className="text-center text-2xl py-5 font-semibold">Colleges</h1>
             {
                 isLoading ? <LoadingSpinner></LoadingSpinner>
                     :
-                    <div className='grid lg:grid-cols-3 gap-4 justify-between'>
+                    <div className='grid lg:grid-cols-3 md:grid-cols-2 gap-4 justify-between'>
                         {
                             colleges.map(college => <CollegeCard key={college._id} college={college}></CollegeCard>)
                         }

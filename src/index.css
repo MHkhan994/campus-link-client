@@ -9,3 +9,15 @@
 .my-btn{
     @apply px-4 py-1 bg-green-600 text-white text-lg rounded-md
 }
+
+.my-swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+    height: 60vh !important;
+  
+    /* Center slide text vertically */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }

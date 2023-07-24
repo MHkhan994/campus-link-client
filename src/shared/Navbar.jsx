@@ -11,6 +11,7 @@ const Navbar = () => {
 
     const handleLogout = () => {
         logOut()
+        setIsOpen(false)
     }
 
     return (
@@ -23,15 +24,18 @@ const Navbar = () => {
                     <NavLink className={({ isActive }) => isActive ? 'text-green-500' : ''} to="/admission">Admission</NavLink>
                     <NavLink className={({ isActive }) => isActive ? 'text-green-500' : ''} to="/myCollege">My college</NavLink>
                     {
+                        user && <button onClick={handleLogout}>
+                            Logout
+                        </button>
+                    }
+                    {
                         user ?
                             <img className="h-10 rounded-full" src={user.photoURL} alt="" />
                             :
                             <NavLink className={({ isActive }) => isActive ? 'text-green-500' : ''} to="/login">Login</NavLink>
                     }
                     {
-                        user && <button onClick={handleLogout}>
-                            Logout
-                        </button>
+                        user && <NavLink className={({ isActive }) => isActive ? 'text-green-500' : ''} to="/profile">{user?.displayName}</NavLink>
                     }
                 </ul>
             </div>
@@ -50,6 +54,20 @@ const Navbar = () => {
                             <NavLink onClick={() => setIsOpen(false)} className={({ isActive }) => isActive ? 'text-green-500' : ''} to="/colleges">Colleges</NavLink>
                             <NavLink onClick={() => setIsOpen(false)} className={({ isActive }) => isActive ? 'text-green-500' : ''} to="/admission">Admission</NavLink>
                             <NavLink onClick={() => setIsOpen(false)} className={({ isActive }) => isActive ? 'text-green-500' : ''} to="/myCollege">My college</NavLink>
+                            {
+                                user && <button onClick={handleLogout}>
+                                    Logout
+                                </button>
+                            }
+                            {
+                                user ?
+                                    <img className="h-10 rounded-full" src={user.photoURL} alt="" />
+                                    :
+                                    <NavLink onClick={() => setIsOpen(false)} className={({ isActive }) => isActive ? 'text-green-500' : ''} to="/login">Login</NavLink>
+                            }
+                            {
+                                user && <NavLink onClick={() => setIsOpen(false)} className={({ isActive }) => isActive ? 'text-green-500' : ''} to="/profile">{user?.displayName}</NavLink>
+                            }
                         </ul>
                     </div>
                 }

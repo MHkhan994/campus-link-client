@@ -10,7 +10,7 @@ const FeaturedColleges = () => {
     return (
         <div className='py-14 my-container'>
             <h1 className='font-semibold text-3xl text-center pb-6'>Featured Colleges</h1>
-            <div className='grid lg:grid-cols-3 justify-between gap-4'>
+            <div className='grid lg:grid-cols-3 md:grid-cols-2 justify-between gap-4'>
                 {
                     colleges.slice(0, 3).map(college => <div className='bg-gray-100 p-1 shadow-lg border rounded-md' key={college._id}>
                         <img className='rounded-md' src={college.image} alt="" />

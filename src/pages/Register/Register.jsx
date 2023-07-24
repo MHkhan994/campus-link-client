@@ -72,7 +72,7 @@ const Register = () => {
     return (
         <div className="my-container mt-20">
             <h1 className="text-3xl font-semibold text-center pb-10 text-green-600">Register</h1>
-            <div className="grid lg:grid-cols-2 gap-10 items-center">
+            <div className="grid lg:grid-cols-2 md:grid-cols-2 gap-10 items-center">
                 <div>
                     <img src={registerImg} alt="" />
                 </div>
