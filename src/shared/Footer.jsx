@@ -4,7 +4,7 @@ import { Link, NavLink } from 'react-router-dom';
 
 const Footer = () => {
     return (
-        <div className='mt-20 py-10 bg-green-100 lg:h-[50vh] flex flex-col justify-between'>
+        <div className='mt-20 py-10 bg-green-100 lg:h-[50vh] flex flex-col gap-10 justify-between'>
             <div className='flex lg:flex-row flex-col justify-between my-container gap-6 lg:w-[50%]'>
                 <div className='flex flex-col items-center lg:items-start gap-3 justify-between h-full'>
                     <h1 className='text-3xl font-semibold text-gray-700 pb-4'>Campus Link</h1>

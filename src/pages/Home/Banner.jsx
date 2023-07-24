@@ -27,11 +27,12 @@ const Banner = () => {
     }
 
     return (
-        <div className='relative mt-10 lg:h-[80vh] h-[50vh] w-full bg-center' style={{ backgroundImage: `url(${banner})`, backgroundAttachment: "fixed" }}>
-            <div className='absolute w-full lg:h-[80vh] h-[50vh] bg-[#00000049] z-20 top-0 left-0'>
+        <div className='relative mt-10 lg:h-[80vh] h-[55vh] w-full bg-fixed bg-center bg-cover' style={{ backgroundImage: `url(${banner})` }}>
+            <img className='lg:h-[80vh] h-[55vh] w-full object-cover lg:hidden md:hidden' src={banner} alt="" />
+            <div className='absolute w-full lg:h-[80vh] h-[55vh] bg-[#00000049] z-20 top-0 left-0'>
                 <form onSubmit={handleSearch} className='my-container flex justify-center h-full items-center'>
                     <input name='text' placeholder='search college name' className='p-2 h-12 text-xl md:w-[70%] lg:w-[50%] w-[90%]' type="text" />
-                    <button className='text-white bg-green-800 px-4 h-12 lg:text-2xl text-xl'>Search</button>
+                    <button className='text-white bg-green-600 px-4 h-12 lg:text-2xl text-xl'>Search</button>
                 </form>
                 <dialog id="my_modal_4" className="modal">
                     <form method="dialog" className="modal-box w-11/12 max-w-4xl rounded-none bg-gray-100">
