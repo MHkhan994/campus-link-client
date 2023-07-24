@@ -76,7 +76,7 @@ const ApplyPage = () => {
     return (
         <div className='pt-20 my-container'>
             <h1 className="text-2xl font-semibold text-green-600 text-center pb-6">Apply to: {name}</h1>
-            <div className="w-[60%] mx-auto">
+            <div className="lg:w-[60%] mx-auto">
                 <form className="space-y-2" onSubmit={handleSubmit(onSubmit)}>
                     <div className="form-control">
                         <label className="label">
