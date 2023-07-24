@@ -14,7 +14,7 @@ const ApplyPage = () => {
     const { data: college = {} } = useQuery({
         queryKey: ['oneCollege'],
         queryFn: async () => {
-            const res = await axios.get(`http://localhost:5000/college/${id}`)
+            const res = await axios.get(`https://campus-link-server.vercel.app/college/${id}`)
             return res.data
         }
     })
@@ -23,7 +23,7 @@ const ApplyPage = () => {
 
     const { register, handleSubmit, formState: { errors } } = useForm();
     const onSubmit = data => {
-        axios.patch('http://localhost:5000/appliedOrNot', { _id, user: user.email })
+        axios.patch('https://campus-link-server.vercel.app/appliedOrNot', { _id, user: user.email })
             .then(res => {
                 console.log(res.data);
                 if (res.data.applied === true) {
@@ -54,7 +54,7 @@ const ApplyPage = () => {
             .then(data => {
                 if (data.success == true) {
                     const image = data.data.display_url
-                    axios.post('http://localhost:5000/application', { collegeId: _id, studentName, college: name, email, phone, address, birthday, subject, date, image })
+                    axios.post('https://campus-link-server.vercel.app/application', { collegeId: _id, studentName, college: name, email, phone, address, birthday, subject, date, image })
                         .then(result => {
                             if (result.data.insertedId) {
                                 Swal.fire({

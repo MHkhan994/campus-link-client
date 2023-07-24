@@ -14,7 +14,7 @@ const UpdateProfile = () => {
     const { data: dbUser = [] } = useQuery({
         queryKey: ['dbdbUser', user],
         queryFn: async () => {
-            const res = await axios.get(`http://localhost:5000/user?email=${user?.email}`)
+            const res = await axios.get(`https://campus-link-server.vercel.app/user?email=${user?.email}`)
             return res.data
         }
     })
@@ -27,7 +27,7 @@ const UpdateProfile = () => {
         const university = data.university || dbUser.university
         const image = dbUser.image
 
-        axios.patch('http://localhost:5000/updateUser', { name, email, phone, address, university, image })
+        axios.patch('https://campus-link-server.vercel.app/updateUser', { name, email, phone, address, university, image })
             .then(res => {
                 if (res.data.modifiedCount > 0) {
                     Swal.fire({

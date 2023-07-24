@@ -12,7 +12,7 @@ const Profile = () => {
     const { data: dbUser = [], isLoading } = useQuery({
         queryKey: ['dbdbUser', user],
         queryFn: async () => {
-            const res = await axios.get(`http://localhost:5000/user?email=${user?.email}`)
+            const res = await axios.get(`https://campus-link-server.vercel.app/user?email=${user?.email}`)
             return res.data
         }
     })

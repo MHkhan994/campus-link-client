@@ -12,7 +12,7 @@ const Banner = () => {
         e.preventDefault()
         const text = e.target.text.value;
         if (text?.length > 0) {
-            axios.get(`http://localhost:5000/college/search/${text}`)
+            axios.get(`https://campus-link-server.vercel.app/college/search/${text}`)
                 .then(res => {
                     console.log(res);
                     e.target.reset()

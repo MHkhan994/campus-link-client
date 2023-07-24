@@ -11,11 +11,13 @@ import App from '../App'
 import MyCollege from "../pages/MyCollege/MyCollege";
 import Profile from "../pages/Profile/Profile";
 import UpdateProfile from "../pages/Profile/UpdateProfile";
+import ErrorPage from "../pages/ErrorPage/ErrorPage";
 
 export const router = createBrowserRouter([
     {
         path: "/",
         element: <App></App>,
+        errorElement: <ErrorPage></ErrorPage>,
         children: [
             {
                 path: '/',

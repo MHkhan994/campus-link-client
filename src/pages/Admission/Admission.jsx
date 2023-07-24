@@ -14,13 +14,13 @@ const Admission = () => {
     const { data: colleges = [], isLoading } = useQuery({
         queryKey: ['colleges', user],
         queryFn: async () => {
-            const res = await axios.get('http://localhost:5000/colleges')
+            const res = await axios.get('https://campus-link-server.vercel.app/colleges')
             return res.data
         }
     })
 
     const handleApply = (id, name) => {
-        axios.patch('http://localhost:5000/appliedOrNot', { id, user: user?.email })
+        axios.patch('https://campus-link-server.vercel.app/appliedOrNot', { id, user: user?.email })
             .then(res => {
                 console.log(res.data);
                 if (res.data.applied === true) {

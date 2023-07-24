@@ -18,7 +18,7 @@ const College = () => {
     const { data: college = {} } = useQuery({
         queryKey: ['oneCollege'],
         queryFn: async () => {
-            const res = await axios.get(`http://localhost:5000/college/${id}`)
+            const res = await axios.get(`https://campus-link-server.vercel.app/college/${id}`)
             return res.data
         }
     })

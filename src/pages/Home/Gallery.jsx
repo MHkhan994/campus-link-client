@@ -9,7 +9,7 @@ import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 
 // import required modules
-import { Autoplay, Grid, Navigation, Pagination } from 'swiper/modules';
+import { Autoplay, FreeMode, Grid, Navigation, Pagination } from 'swiper/modules';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 const Gallery = () => {
@@ -17,7 +17,7 @@ const Gallery = () => {
     const { data: gallery = [] } = useQuery({
         queryKey: ['gallery'],
         queryFn: async () => {
-            const res = await axios.get('http://localhost:5000/gallery')
+            const res = await axios.get('https://campus-link-server.vercel.app/gallery')
             return res.data
         }
     })
@@ -31,15 +31,16 @@ const Gallery = () => {
                     autoplay={{ delay: 2500, disableOnInteraction: false }}
                     loop={true}
                     spaceBetween={20}
+                    freeMode={true}
                     pagination={{
                         clickable: true,
                     }}
-                    modules={[Pagination, Autoplay, Navigation]}
-                    className='h-[70vh] my-container pb-10'
+                    modules={[Pagination, Autoplay, Navigation, FreeMode]}
+                    className='h-[66vh] my-container pb-10'
                 >
                     {
                         gallery.map(item => <SwiperSlide className='my-swiper-slide' key={item._id}>
-                            <img className='h-full rounded-md object-cover' src={item.imageUrl} alt="" />
+                            <img className='h-full rounded-md object-cover w-full' src={item.imageUrl} alt="" />
                         </SwiperSlide>)
                     }
                 </Swiper>

@@ -11,7 +11,7 @@ const MyCollege = () => {
     const { data: appliedColleges = [], isLoading } = useQuery({
         queryKey: ['applicedColleges', user],
         queryFn: async () => {
-            const res = await axios(`http://localhost:5000/applications?email=${user?.email}`)
+            const res = await axios(`https://campus-link-server.vercel.app/applications?email=${user?.email}`)
             return res.data
         }
     })
@@ -19,7 +19,7 @@ const MyCollege = () => {
     console.log(appliedColleges);
 
     return (
-        <div className="my-container pt-20">
+        <div className="my-container pt-20 min-h-[60vh]">
             <h1 className="text-center text-2xl py-6 font-semibold">My College</h1>
             {
                 isLoading ? <LoadingSpinner></LoadingSpinner>

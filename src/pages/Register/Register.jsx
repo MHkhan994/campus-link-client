@@ -2,15 +2,16 @@ import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProvider";
 import { useForm } from "react-hook-form";
-import { FaFacebook, FaGoogle } from "react-icons/fa";
+import { FaGithub, FaGoogle } from "react-icons/fa";
 
 import registerImg from '../../assets/register.jpg'
-import { updateProfile } from "firebase/auth";
+import { sendEmailVerification, updateProfile } from "firebase/auth";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 const Register = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const { googleLogin, createUser, facebookLogin } = useContext(AuthContext)
+    const { googleLogin, createUser, logOut } = useContext(AuthContext)
     const navigate = useNavigate()
 
     const onSubmit = data => {
@@ -33,12 +34,23 @@ const Register = () => {
                     const image = data.data.display_url
                     createUser(email, password)
                         .then(result => {
-                            updateProfile(result.user, { displayName: name, photoURL: image })
-                            axios.post('http://localhost:5000/user', { name, image, email, phone: '', address: '', university: '' })
-                                .then(ress => {
-                                    if (ress.data.insertedId) {
-                                        navigate('/')
-                                    }
+                            sendEmailVerification(result.user)
+                                .then(() => {
+                                    Swal.fire({
+                                        position: 'center',
+                                        icon: 'success',
+                                        text: 'A varification email has been sent to your email address. please verify your email before loggin in',
+                                        showConfirmButton: false,
+                                        timer: 4000
+                                    })
+                                    updateProfile(result.user, { displayName: name, photoURL: image })
+                                    axios.post('https://campus-link-server.vercel.app/user', { name, image, email, phone: '', address: '', university: '' })
+                                        .then(ress => {
+                                            if (ress.data.insertedId) {
+                                                logOut()
+                                                navigate('/login')
+                                            }
+                                        })
                                 })
                         })
                 }
@@ -51,7 +63,7 @@ const Register = () => {
             .then(result => {
                 if (result.user) {
                     const user = result.user
-                    axios.post('http://localhost:5000/user', { name: user.displayName, image: user.photoURL, email: user.email, phone: '', address: '', university: '' })
+                    axios.post('https://campus-link-server.vercel.app/user', { name: user.displayName, image: user.photoURL, email: user.email, phone: '', address: '', university: '' })
                         .then(res => {
                             console.log(res.data);
                             if (res.data.insertedId || res.data.alreadyUser === true) {
@@ -62,13 +74,33 @@ const Register = () => {
             })
     }
 
-
-    const handleFacebookLogin = () => {
-        facebookLogin()
+    const handleGithubLogin = () => {
+        githubLogin()
             .then(result => {
                 console.log(result);
+                if (result.user) {
+                    const user = result.user
+                    axios.post('https://campus-link-server.vercel.app/user', { name: user.displayName, image: user.photoURL, email: user.email, phone: '', address: '', university: '' })
+                        .then(res => {
+                            console.log(res.data);
+                            if (res.data.insertedId || res.data.alreadyUser === true) {
+                                navigate('/')
+                            }
+                        })
+                }
+            })
+            .catch(error => {
+                if (error.message.includes('account-exists-with-different-credential')) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'a account with same email address exists. try logging in with that email account',
+                    })
+                }
             })
     }
+
+
     return (
         <div className="my-container mt-20">
             <h1 className="text-3xl font-semibold text-center pb-10 text-green-600">Register</h1>
@@ -116,9 +148,9 @@ const Register = () => {
                             <FaGoogle className="mx-auto mb-1 text-blue-500 text-2xl inline-block"></FaGoogle>
                             <span className="text-xl ps-4">Google</span>
                         </button>
-                        <button onClick={handleFacebookLogin} className="bg-gray-200 border border-green-600 rounded-lg h-12 w-full mt-5">
-                            <FaFacebook className="mx-auto text-blue-600 mb-1 text-2xl inline-block"></FaFacebook>
-                            <span className=" text-xl ps-4">Facebook</span>
+                        <button onClick={handleGithubLogin} className="bg-gray-200 border border-green-600 rounded-lg h-12 w-full mt-5">
+                            <FaGithub className="mx-auto text-gray-600 mb-1 text-2xl inline-block"></FaGithub>
+                            <span className=" text-xl ps-4">Github</span>
                         </button>
                         <p className="text-center py-2">Already have an accout? <Link className="text-blue-600" to={'/login'}>Login</Link></p>
                     </div>
