@@ -27,8 +27,7 @@ const Banner = () => {
     }
 
     return (
-        <div className='relative mt-10'>
-            <img className='lg:h-[80vh] h-[50vh] w-full object-cover' src={banner} alt="" />
+        <div className='relative mt-10 lg:h-[80vh] h-[50vh] w-full bg-center' style={{ backgroundImage: `url(${banner})`, backgroundAttachment: "fixed" }}>
             <div className='absolute w-full lg:h-[80vh] h-[50vh] bg-[#00000049] z-20 top-0 left-0'>
                 <form onSubmit={handleSearch} className='my-container flex justify-center h-full items-center'>
                     <input name='text' placeholder='search college name' className='p-2 h-12 text-xl md:w-[70%] lg:w-[50%] w-[90%]' type="text" />
